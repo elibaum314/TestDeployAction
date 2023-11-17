@@ -6,8 +6,12 @@ on:
       - main
 jobs:
   deploy:
-    runs-on: docker
-    container: Dockerfile
+    runs-on: ubuntu-latest
     steps:
-      - name: generate deploy.xml
-        run: generatedeployxml.sh
+        - uses: actions/setup-java@v3
+          with:
+            java-version: '17'
+        - uses: actions/node-setup@v4
+          with:
+            node-version: '16'
+        - run: npm i -g --unsafe-perm --acceptSuiteCloudSDKLicense @oracle/suitecloud-cli
