@@ -11,13 +11,13 @@ jobs:
         - uses: actions/checkout@v2
           with:
               fetch-depth: 0
-        - uses: actions/setup-java@v3
-          with:
-            distribution: 'zulu'
-            java-version: '17'
-        - uses: actions/setup-node@v2
-          with:
-            node-version: '16'
-        - run: npm i -g --unsafe-perm --acceptSuiteCloudSDKLicense @oracle/suitecloud-cli
+        # - uses: actions/setup-java@v3
+        #   with:
+        #     distribution: 'zulu'
+        #     java-version: '17'
+        # - uses: actions/setup-node@v2
+        #   with:
+        #     node-version: '16'
+        # - run: npm i -g --unsafe-perm --acceptSuiteCloudSDKLicense @oracle/suitecloud-cli
         - run: ls -alh
         - run: chmod +x ./scripts/bash/generatedeploy.sh && ./scripts/bash/generatedeploy.sh
