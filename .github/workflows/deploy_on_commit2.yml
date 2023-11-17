@@ -22,4 +22,5 @@ jobs:
         - run: git branch -a
         - run: git merge-base remotes/origin/main HEAD
         - run: ls -alh
+        - run: cat deploy.xml
         - run: chmod +x ./scripts/bash/generatedeploy.sh && ./scripts/bash/generatedeploy.sh
