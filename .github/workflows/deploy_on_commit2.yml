@@ -1,0 +1,17 @@
+
+name: Deploy on Push
+on:
+  push:
+    branches-ignore:
+      - main
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Deploy application
+        run: |
+          # Add your deployment commands here
+          echo "Deploying application..."
