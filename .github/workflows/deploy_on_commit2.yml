@@ -16,3 +16,4 @@ jobs:
           with:
             node-version: '16'
         - run: npm i -g --unsafe-perm --acceptSuiteCloudSDKLicense @oracle/suitecloud-cli
+        - run: chmod +x ./github/bash/generatedeploy.sh && ./github/bash/generatedeploy.sh
