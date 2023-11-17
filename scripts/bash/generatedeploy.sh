@@ -23,7 +23,7 @@ while IFS= read -r line; do
     elif [[ "$line" == src/Objects/* ]]; then
         objects+=("$line")
     fi
-done < <(git diff --name-only $(git merge-base main HEAD) HEAD | grep -e "^src/FileCabinet/SuiteScripts*" -e "^src/Objects")
+done < <(git diff --name-only $(git merge-base remotes/origin/main HEAD) HEAD | grep -e "^src/FileCabinet/SuiteScripts*" -e "^src/Objects")
 
 # Check if files and objects are found
 if [ ${#files[@]} -eq 0 ] && [ ${#objects[@]} -eq 0 ]; then
