@@ -23,6 +23,7 @@ while IFS= read -r line; do
     if [[ "$line" == src/* ]]; then
         line="~/${line#src/}"
     fi
+    echo "$line"
 
     if [[ "$line" == ~/FileCabinet/* ]]; then
         files+=("$line")
