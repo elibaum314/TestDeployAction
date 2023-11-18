@@ -20,7 +20,7 @@ jobs:
             node-version: '16'
         - run: npm i -g --unsafe-perm --acceptSuiteCloudSDKLicense @oracle/suitecloud-cli
         - run: git branch -a
-        - run: git merge-base remotes/origin/main HEAD
+        - run: git diff --name-only $(git merge-base remotes/origin/main HEAD) HEAD
         - run: ls -alh
         - run: chmod +x ./scripts/bash/generatedeploy.sh && ./scripts/bash/generatedeploy.sh
         - run: cat deploy.xml
