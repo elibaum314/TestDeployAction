@@ -18,16 +18,13 @@ objects=()
 
 # Execute git command and process output
 while IFS= read -r line; do
-    # Replace src/ with ~/ at the beginning of the line
-    echo "$line"
-    if [[ "$line" == src/* ]]; then
-        line="~/${line#src/}"
-    fi
-    echo "$line"
 
-    if [[ "$line" == ~/FileCabinet/* ]]; then
+    #Check if line matches the pattern ~/FileCabinet/* or ~/Objects/*
+
+
+    if [[ "$line" == src/FileCabinet/* ]]; then
         files+=("$line")
-    elif [[ "$line" == ~/Objects/* ]]; then
+    elif [[ "$line" == src/Objects/* ]]; then
         objects+=("$line")
     fi
 done < <(git diff --name-only $(git merge-base remotes/origin/main HEAD) HEAD | grep -e "^src/FileCabinet/SuiteScripts*" -e "^src/Objects")
