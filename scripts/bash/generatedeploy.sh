@@ -19,6 +19,7 @@ objects=()
 # Execute git command and process output
 while IFS= read -r line; do
     # Replace src/ with ~/ at the beginning of the line
+    echo "$line"
     if [[ "$line" == src/* ]]; then
         line="~/${line#src/}"
     fi
