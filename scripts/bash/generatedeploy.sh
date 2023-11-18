@@ -23,8 +23,11 @@ while IFS= read -r line; do
 
 
     if [[ "$line" == src/FileCabinet/* ]]; then
+        # replace src/ with ~/
+        line=${line/src\//\~\/}
         files+=("$line")
     elif [[ "$line" == src/Objects/* ]]; then
+        line=${line/src\//\~\/}
         objects+=("$line")
     fi
 done < <(git diff --name-only $(git merge-base remotes/origin/main HEAD) HEAD | grep -e "^src/FileCabinet/SuiteScripts*" -e "^src/Objects")
