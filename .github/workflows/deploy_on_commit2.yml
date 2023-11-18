@@ -24,4 +24,4 @@ jobs:
         - run: ls -alh
         - run: chmod +x ./scripts/bash/generatedeploy.sh && ./scripts/bash/generatedeploy.sh
         - run: cat deploy.xml
-        - run: suitecloud account:savetoken --authid sandbox --accountid ${{secrets.SANDBOXACCOUNT}}  --tokenid ${{secrets.SANDBOXTOKENID}} -- tokensecret ${{secrets.SANDBOXTOKENSECRET}}
+        - run: suitecloud account:savetoken -authid sandbox -account ${{secrets.SANDBOXACCOUNT}}  -tokenid ${{secrets.SANDBOXTOKENID}} -tokensecret ${{secrets.SANDBOXTOKENSECRET}}
