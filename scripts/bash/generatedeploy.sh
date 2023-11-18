@@ -50,6 +50,6 @@ fi
     fi
 
     echo "</deploy>"
-} > output.xml
+} > deploy.xml
 
-echo "XML file generated: output.xml"
+echo "XML file generated: deploy.xml"
