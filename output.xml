@@ -1,0 +1,11 @@
+<deploy>
+    <files>
+        <path>src/FileCabinet/SuiteScripts/testsuitescript copy.js</path>
+        <path>src/FileCabinet/SuiteScripts/testsuitescript.js</path>
+    </files>
+    <objects>
+        <path>src/Objects/customscript_disabletraveladder_order_cs.xml</path>
+        <path>src/Objects/customscript_monitor_scheduled.xml</path>
+        <path>src/Objects/customscript_oldleaddelete.xml</path>
+    </objects>
+</deploy>
