@@ -6,6 +6,7 @@ on:
       - main
 jobs:
   deploy:
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
         - uses: actions/checkout@v2
@@ -20,7 +21,8 @@ jobs:
             node-version: '16'
         - run: npm i -g --unsafe-perm --acceptSuiteCloudSDKLicense @oracle/suitecloud-cli
         - run: git branch -a
-        - run: git diff --name-only $(git merge-base remotes/origin/main HEAD) HEAD
+        - run: git diff HEAD^ HEAD
+        - run: git diff --name-only $(git merge-base ${{github.event.pull_request.base.sha}} HEAD) HEAD
         - run: ls -alh
         - run: chmod +x ./scripts/bash/generatedeploy.sh && ./scripts/bash/generatedeploy.sh
         - run: cat deploy.xml
