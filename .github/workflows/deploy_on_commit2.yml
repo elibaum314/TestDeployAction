@@ -26,3 +26,9 @@ jobs:
         - run: cat deploy.xml
         - run: suitecloud account:savetoken --authid sandbox --account ${{secrets.SANDBOXACCOUNT}}  --tokenid ${{secrets.SANDBOXTOKENID}} --tokensecret ${{secrets.SANDBOXTOKENSECRET}}
         - run: suitecloud account:savetoken --authid production --account ${{secrets.PRODUCTIONACCOUNT}}  --tokenid ${{secrets.PRODUCTIONTOKENID}} --tokensecret ${{secrets.PRODUCTIONTOKENSECRET}}
+        - run: suitecloud project:adddependencies
+        - run: suitecloud project:deploy
+
+
+
+
