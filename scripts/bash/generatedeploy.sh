@@ -1,4 +1,4 @@
- #!/bin/bash
+#!/bin/bash
 
 # Function to add paths to XML
 add_paths_to_xml() {
@@ -17,11 +17,8 @@ files=()
 objects=()
 
 # Execute git command and process output
-while IFS= read -r line; do
-
-    #Check if line matches the pattern ~/FileCabinet/* or ~/Objects/*
-
-
+git diff --name-only $(git merge-base remotes/origin/main HEAD) HEAD | grep -e "^src/FileCabinet/SuiteScripts*" -e "^src/Objects" | while IFS= read -r line; do
+    # Check if line matches the pattern ~/FileCabinet/* or ~/Objects/*
     if [[ "$line" == src/FileCabinet/* ]]; then
         # replace src/ with ~/
         line=${line/src\//\~\/}
@@ -30,7 +27,7 @@ while IFS= read -r line; do
         line=${line/src\//\~\/}
         objects+=("$line")
     fi
-done < <(git diff --name-only $(git merge-base remotes/origin/main HEAD) HEAD | grep -e "^src/FileCabinet/SuiteScripts*" -e "^src/Objects")
+done
 
 # Check if files and objects are found
 if [ ${#files[@]} -eq 0 ] && [ ${#objects[@]} -eq 0 ]; then
