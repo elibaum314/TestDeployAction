@@ -21,9 +21,14 @@ jobs:
         - uses: actions/setup-node@v2
           with:
             node-version: '16'
+        - name: List changed files
+          run: |
+           git fetch origin master:master
+           CHANGED_FILES=$(git diff-tree --no-commit-id --name-only -r HEAD master)
+           echo "Changed files in the merge: $CHANGED_FILES"
         - run: npm i -g --unsafe-perm --acceptSuiteCloudSDKLicense @oracle/suitecloud-cli
         - run: git branch -a
-        - run: echo ${{github.event.pull_request.base.ref}}
+        - run: echo ${{github.event.pull_request.head.ref}}
         - run: git diff --name-only $(git merge-base ${{github.event.base_ref}} HEAD) HEAD
         - run: ls -alh
         - run: chmod +x ./scripts/bash/generatedeploy.sh && ./scripts/bash/generatedeploy.sh
