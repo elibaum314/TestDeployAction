@@ -29,8 +29,9 @@ jobs:
       
         - name: List changed files
           run: |
-              CHANGED_FILES=$(git diff-tree --no-commit-id --name-only -r HEAD FETCH_HEAD)
-              echo "Changed files in the merge: $CHANGED_FILES"
+             PR_LAST_SHA=${{ github.event.pull_request.head.sha }}
+             CHANGED_FILES=$(git diff-tree --no-commit-id --name-only -r $PR_LAST_SHA FETCH_HEAD)
+             echo "Changed files in the merge: $CHANGED_FILE
         - run: npm i -g --unsafe-perm --acceptSuiteCloudSDKLicense @oracle/suitecloud-cli
         - run: git branch -a
         - run: echo ${{github.event.pull_request.head.ref}}
