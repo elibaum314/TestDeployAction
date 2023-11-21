@@ -21,11 +21,16 @@ jobs:
         - uses: actions/setup-node@v2
           with:
             node-version: '16'
+        - name: Detach HEAD
+          run: git checkout --detach
+      
+        - name: Fetch changes
+          run: git fetch origin ${GITHUB_BASE_REF}
+      
         - name: List changed files
           run: |
-           git fetch origin main:main
-           CHANGED_FILES=$(git diff-tree --no-commit-id --name-only -r HEAD main)
-           echo "Changed files in the merge: $CHANGED_FILES"
+              CHANGED_FILES=$(git diff-tree --no-commit-id --name-only -r HEAD FETCH_HEAD)
+              echo "Changed files in the merge: $CHANGED_FILES"
         - run: npm i -g --unsafe-perm --acceptSuiteCloudSDKLicense @oracle/suitecloud-cli
         - run: git branch -a
         - run: echo ${{github.event.pull_request.head.ref}}
