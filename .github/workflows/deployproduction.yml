@@ -23,8 +23,8 @@ jobs:
             node-version: '16'
         - name: List changed files
           run: |
-           git fetch origin master:master
-           CHANGED_FILES=$(git diff-tree --no-commit-id --name-only -r HEAD master)
+           git fetch origin main:main
+           CHANGED_FILES=$(git diff-tree --no-commit-id --name-only -r HEAD main)
            echo "Changed files in the merge: $CHANGED_FILES"
         - run: npm i -g --unsafe-perm --acceptSuiteCloudSDKLicense @oracle/suitecloud-cli
         - run: git branch -a
