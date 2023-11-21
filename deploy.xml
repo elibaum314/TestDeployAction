@@ -1,0 +1,9 @@
+<deploy>
+    <files>
+        <path>~/FileCabinet/SuiteScripts/testsuitescript copy 5.js</path>
+        <path>~/FileCabinet/SuiteScripts/testsuitescript copy 6.js</path>
+        <path>~/FileCabinet/SuiteScripts/testsuitescript copy 7.js</path>
+        <path>~/FileCabinet/SuiteScripts/testsuitescript copy 8.js</path>
+        <path>~/FileCabinet/SuiteScripts/testsuitescript copy 9.js</path>
+    </files>
+</deploy>
