@@ -1,11 +1,12 @@
 
 name: Deploy Production
 on:
-  push:
+  pull_request:
     branches:
       - main
 jobs:
   deploy:
+    if: github.event.pull_request.merged == 'true'
     runs-on: ubuntu-latest
     steps:
         - uses: actions/checkout@v2
@@ -20,7 +21,7 @@ jobs:
             node-version: '16'
         - run: npm i -g --unsafe-perm --acceptSuiteCloudSDKLicense @oracle/suitecloud-cli
         - run: git branch -a
-        - run: echo base ref ${{github.event.base_ref}}
+        - run: echo ${{github.event.pull_request.base.ref}}
         - run: git diff --name-only $(git merge-base ${{github.event.base_ref}} HEAD) HEAD
         - run: ls -alh
         - run: chmod +x ./scripts/bash/generatedeploy.sh && ./scripts/bash/generatedeploy.sh
