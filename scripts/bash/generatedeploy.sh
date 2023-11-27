@@ -33,7 +33,9 @@ while IFS= read -r line; do
         line=${line/src\//\~\/}
         objects+=("$line")
     fi
-done < <(git diff --name-only --diff-filter=d $hash1 $hash2 | grep -e "^src/FileCabinet/SuiteScripts*" -e "^src/Objects")
+done < <(git diff --name-only $hash1 $hash2 | grep -e "^src/FileCabinet/SuiteScripts*" -e "^src/Objects")
+
+# done < <(git diff --name-only --diff-filter=d $hash1 $hash2 | grep -e "^src/FileCabinet/SuiteScripts*" -e "^src/Objects")
 
 if [ ${#files[@]} -eq 0 ] && [ ${#objects[@]} -eq 0 ]; then
     echo "No files or objects found to deploy."
