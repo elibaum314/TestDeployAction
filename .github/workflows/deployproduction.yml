@@ -1,14 +1,11 @@
 
 name: Deploy Production
 on:
-  pull_request:
-    types: [closed]
+  push:
     branches:
       - main
-
 jobs:
   deploy:
-    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
         - uses: actions/checkout@v2
@@ -21,20 +18,9 @@ jobs:
         - uses: actions/setup-node@v2
           with:
             node-version: '16'
-        - name: Detach HEAD
-          run: git checkout --detach
-      
-        - name: Fetch changes
-          run: git fetch origin ${GITHUB_BASE_REF}
-      
-        - name: List changed files
-          run: |
-             PR_LAST_SHA=${{ github.event.pull_request.head.sha }}
-             CHANGED_FILES=$(git diff-tree --no-commit-id --name-only -r $PR_LAST_SHA FETCH_HEAD)
-             echo "Changed files in the merge: $CHANGED_FILE"
         - run: npm i -g --unsafe-perm --acceptSuiteCloudSDKLicense @oracle/suitecloud-cli
         - run: git branch -a
-        - run: echo ${{github.event.pull_request.head.ref}}
+        - run: git diff --name-only ${{ github.event.before }} ${{ github.event.after }}
         - run: git diff --name-only $(git merge-base ${{github.event.base_ref}} HEAD) HEAD
         - run: ls -alh
         - run: chmod +x ./scripts/bash/generatedeploy.sh && ./scripts/bash/generatedeploy.sh
