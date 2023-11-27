@@ -1,6 +1,13 @@
  #!/bin/bash
 
-# Function to add paths to XML
+if [ $# -ne 2 ]; then
+    echo "Usage: $0 <hash1> <hash2>"
+    exit 1
+fi
+
+hash1=$1
+hash2=$2
+
 add_paths_to_xml() {
     local type=$1
     shift
@@ -12,14 +19,10 @@ add_paths_to_xml() {
     echo "    </$type>"
 }
 
-# Arrays to hold files and objects
 files=()
 objects=()
 
-# Execute git command and process output
 while IFS= read -r line; do
-
-    #Check if line matches the pattern ~/FileCabinet/* or ~/Objects/*
 
 
     if [[ "$line" == src/FileCabinet/* ]]; then
@@ -30,15 +33,13 @@ while IFS= read -r line; do
         line=${line/src\//\~\/}
         objects+=("$line")
     fi
-done < <(git diff --name-only $(git merge-base remotes/origin/main HEAD) HEAD | grep -e "^src/FileCabinet/SuiteScripts*" -e "^src/Objects")
+done < <(git diff --name-only $hash1 $hash2 | grep -e "^src/FileCabinet/SuiteScripts*" -e "^src/Objects")
 
-# Check if files and objects are found
 if [ ${#files[@]} -eq 0 ] && [ ${#objects[@]} -eq 0 ]; then
     echo "No files or objects found to deploy."
     exit 1
 fi
 
-# Main script
 {
     echo "<deploy>"
 
