@@ -19,11 +19,6 @@ jobs:
           with:
             node-version: '16'
         - run: npm i -g --unsafe-perm --acceptSuiteCloudSDKLicense @oracle/suitecloud-cli
-        - run: git branch -a
-        - run: git diff --name-only $(git merge-base remotes/origin/main HEAD) HEAD
-        - run: ls -alh
-        - run: chmod +x ./scripts/bash/generatedeploy.sh && ./scripts/bash/generatedeploy.sh $(git merge-base remotes/origin/main HEAD) HEAD
-        - run: cat deploy.xml
         - run: suitecloud account:savetoken --authid sandbox --account ${{secrets.SANDBOXACCOUNT}}  --tokenid ${{secrets.SANDBOXTOKENID}} --tokensecret ${{secrets.SANDBOXTOKENSECRET}}
         - run: suitecloud project:adddependencies
         - run: suitecloud project:deploy

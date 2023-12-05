@@ -19,12 +19,6 @@ jobs:
           with:
             node-version: '16'
         - run: npm i -g --unsafe-perm --acceptSuiteCloudSDKLicense @oracle/suitecloud-cli
-        - run: git branch -a
-        - run: git diff --name-only ${{ github.event.before }} ${{ github.event.after }}
-        - run: git diff --name-only $(git merge-base ${{github.event.base_ref}} HEAD) HEAD
-        - run: ls -alh
-        - run: chmod +x ./scripts/bash/generatedeploy.sh && ./scripts/bash/generatedeploy.sh ${{github.event.before}} ${{github.event.after}}
-        - run: cat deploy.xml
         - run: suitecloud account:savetoken --authid production --account ${{secrets.PRODUCTIONACCOUNT}}  --tokenid ${{secrets.PRODUCTIONTOKENID}} --tokensecret ${{secrets.PRODUCTIONTOKENSECRET}}
         - run: suitecloud project:adddependencies
         - run: suitecloud project:deploy
