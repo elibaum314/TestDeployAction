@@ -1,9 +1,11 @@
 <deploy>
     <files>
-        <path>~/FileCabinet/SuiteScripts/testsuitescript copy 5.js</path>
-        <path>~/FileCabinet/SuiteScripts/testsuitescript copy 6.js</path>
-        <path>~/FileCabinet/SuiteScripts/testsuitescript copy 7.js</path>
-        <path>~/FileCabinet/SuiteScripts/testsuitescript copy 8.js</path>
-        <path>~/FileCabinet/SuiteScripts/testsuitescript copy 9.js</path>
+        <path>~/FileCabinet/SuiteScripts/testsuitescript copy 14.js</path>
+        <path>~/FileCabinet/SuiteScripts/testsuitescript copy 15.js</path>
+        <path>~/FileCabinet/SuiteScripts/testsuitescript copy 16.js</path>
+        <path>~/FileCabinet/SuiteScripts/testsuitescript copy 17.js</path>
+        <path>~/FileCabinet/SuiteScripts/testsuitescript copy 18.js</path>
+        <path>~/FileCabinet/SuiteScripts/testsuitescript copy 19.js</path>
+        <path>~/FileCabinet/SuiteScripts/testsuitescript copy 20.js</path>
     </files>
 </deploy>
