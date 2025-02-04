@@ -20,7 +20,7 @@ jobs:
             node-version: '16'
         - run: echo ${{secrets.SANDBOX_B64_KEY}} | base64 --decode > ./sandbox.pem
         - run: npm i -g --unsafe-perm --acceptSuiteCloudSDKLicense @oracle/suitecloud-cli
-        - run:  suitecloud account:setup:ci --account ${{NETSUITE_ACCOUNT_ID}} --authid netsuite-ci --certificateid ${{NETSUITE_CERTIFICATE_ID}} --privatekeypath ./sandbox.pem
+        - run:  suitecloud account:setup:ci --account ${{SANDBOX_ACCOUNT}} --authid netsuite-ci --certificateid ${{SANDBOX_CERT_ID}} --privatekeypath ./sandbox.pem
         - run: suitecloud project:adddependencies
         - run: suitecloud project:deploy
 
