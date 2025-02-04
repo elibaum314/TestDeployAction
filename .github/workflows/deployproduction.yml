@@ -18,7 +18,6 @@ jobs:
         - uses: actions/setup-node@v2
           with:
             node-version: '16'
-        - run: npm i -g --unsafe-perm --acceptSuiteCloudSDKLicense @oracle/suitecloud-cli
         - run: suitecloud account:savetoken --authid production --account ${{secrets.PRODUCTIONACCOUNT}}  --tokenid ${{secrets.PRODUCTIONTOKENID}} --tokensecret ${{secrets.PRODUCTIONTOKENSECRET}}
         - run: suitecloud project:adddependencies
         - run: suitecloud project:deploy
