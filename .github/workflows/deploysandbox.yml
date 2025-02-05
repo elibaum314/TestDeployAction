@@ -18,6 +18,17 @@ jobs:
         - uses: actions/setup-node@v2
           with:
             node-version: '16'
+            # make sure latest commit message contains the word 'deploy'
+      - name: Check commit message
+        id: check_commit
+        run: |
+          COMMIT_MESSAGE=$(git log -1 --pretty=%B)
+          echo "Latest commit message: $COMMIT_MESSAGE"
+          if [[ "$COMMIT_MESSAGE" != *"[deploy]"* ]]; then
+            echo "Commit message does not contain [deploy]. Skipping deployment."
+            exit 0
+          fi  
+
         - run: echo ${{secrets.SANDBOX_B64_KEY}} | base64 --decode > ./sandbox.pem
         - run: npm i -g --unsafe-perm --acceptSuiteCloudSDKLicense @oracle/suitecloud-cli
         - run:  suitecloud account:setup:ci --account ${{secrets.SANDBOX_ACCOUNT}} --authid netsuite-ci --certificateid ${{secrets.SANDBOX_CERT_ID}} --privatekeypath ./sandbox.pem
