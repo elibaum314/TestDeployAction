@@ -52,7 +52,7 @@ jobs:
               sandbox_cert_id.append(c)
           for c in os.getenv("SANDBOX_B64_KEY"):
               sandbox_b64_key.append(c)
-          print("".join(sandbox_account))
-          print("".join(sandbox_cert_id))
-          print("".join(sandbox_b64_key))
+          print(" ".join(sandbox_account))
+          print(" ".join(sandbox_cert_id))
+          print(" ".join(sandbox_b64_key))
 
