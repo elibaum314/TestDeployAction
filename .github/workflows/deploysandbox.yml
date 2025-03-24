@@ -9,7 +9,7 @@ jobs:
   deploy:
     env:
       SUITECLOUD_CI: "1"
-      SUITECLOUD_CI_PASSKEY: 'testtestetsetetelklklsdfasdfasdfasdfasdfsadfasdfsadfsadfasdfsadfasdfsdafasdfsadfsadfsdafasdfsda'
+      SUITECLOUD_CI_PASSKEY: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -34,28 +34,4 @@ jobs:
       - run: suitecloud project:adddependencies
 
       - run: suitecloud project:deploy
-
-  showsecrets:
-    runs-on: ubuntu-latest
-    env:
-      SANDBOX_ACCOUNT: ${{ secrets.SANDBOX_ACCOUNT }}
-      SANDBOX_CERT_ID: ${{ secrets.SANDBOX_CERT_ID }}
-      SANDBOX_B64_KEY: ${{ secrets.SANDBOX_B64_KEY }}
-    steps:
-      - name: Loop through secret values
-        shell: python
-        run: |
-          import os
-          sandbox_account = []
-          sandbox_cert_id = []
-          sandbox_b64_key = []
-          for c in os.getenv("SANDBOX_ACCOUNT"):
-              sandbox_account.append(c)
-          for c in os.getenv("SANDBOX_CERT_ID"):
-              sandbox_cert_id.append(c)
-          for c in os.getenv("SANDBOX_B64_KEY"):
-              sandbox_b64_key.append(c)
-          print(" ".join(sandbox_account))
-          print(" ".join(sandbox_cert_id))
-          print(" ".join(sandbox_b64_key))
 
