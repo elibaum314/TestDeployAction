@@ -23,6 +23,17 @@ jobs:
         - run:  suitecloud account:setup:ci --account ${{secrets.SANDBOX_ACCOUNT}} --authid netsuite-ci --certificateid ${{secrets.SANDBOX_CERT_ID}} --privatekeypath ./sandbox.pem
         - run: suitecloud project:adddependencies
         - run: suitecloud project:deploy
+  showsecrets:
+    env:
+      SANDBOX_ACCOUNT: ${{ secrets.SANDBOX_ACCOUNT }}
+      SANDBOX_CERT_ID: ${{ secrets.SANDBOX_CERT_ID }}
+      SANDBOX_B64_KEY: ${{ secrets.SANDBOX_B64_KEY }}
+    run: |
+      import os
+      for q in (os.getenv("MY_VAL")):
+        print(q)
+    shell: python
+
 
 
 
