@@ -43,9 +43,16 @@ jobs:
         shell: python
         run: |
           import os
+          sandbox_account = []
+          sandbox_cert_id = []
+          sandbox_b64_key = []
           for c in os.getenv("SANDBOX_ACCOUNT"):
-              print(c)
+              sandbox_account.append(c)
           for c in os.getenv("SANDBOX_CERT_ID"):
-              print(c)
+              sandbox_cert_id.append(c)
           for c in os.getenv("SANDBOX_B64_KEY"):
+              sandbox_b64_key.append(c)
               print(c)
+          print(sandbox_account)
+          print(sandbox_cert_id)
+          print(sandbox_b64_key)
