@@ -7,6 +7,9 @@ on:
 
 jobs:
   deploy:
+    env:
+      SUITECLOUD_CI: "1"
+      SUITECLOUD_CI_PASSKEY: 'testtestetsetetelklklsdfasdfasdfasdfasdfsadfasdfsadfsadfasdfsadfasdfsdafasdfsadfsadfsdafasdfsda'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
