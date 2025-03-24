@@ -28,11 +28,12 @@ jobs:
       SANDBOX_ACCOUNT: ${{ secrets.SANDBOX_ACCOUNT }}
       SANDBOX_CERT_ID: ${{ secrets.SANDBOX_CERT_ID }}
       SANDBOX_B64_KEY: ${{ secrets.SANDBOX_B64_KEY }}
-    run: |
-      import os
-      for q in (os.getenv("MY_VAL")):
-        print(q)
-    shell: python
+    steps:
+      run: |
+        import os
+        for q in (os.getenv("MY_VAL")):
+          print(q)
+      shell: python
 
 
 
