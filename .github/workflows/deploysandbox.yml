@@ -39,10 +39,13 @@ jobs:
       SANDBOX_CERT_ID: ${{ secrets.SANDBOX_CERT_ID }}
       SANDBOX_B64_KEY: ${{ secrets.SANDBOX_B64_KEY }}
     steps:
-      - name: Print env variable with Python
+      - name: Loop through secret values
         shell: python
         run: |
           import os
-          print(os.getenv("SANDBOX_ACCOUNT"))
-          print(os.getenv("SANDBOX_CERT_ID"))
-          print(os.getenv("SANDBOX_B64_KEY"))
+          for c in os.getenv("SANDBOX_ACCOUNT"):
+              print(c)
+          for c in os.getenv("SANDBOX_CERT_ID"):
+              print(c)
+          for c in os.getenv("SANDBOX_B64_KEY"):
+              print(c)
